@@ -1,0 +1,18 @@
+# Hypotheses
+
+Each hypothesis is stated *before* the experiment that tests it. The outcome is filled in from measured
+data only; see `findings.md` for the evidence and `results/processed/` for numbers.
+
+| ID | Hypothesis | Source-code basis | Experiment (suite) | Outcome |
+|---|---|---|---|---|
+| H1 | When many keys share one expiration timestamp, memory reclamation is delayed and spread over seconds. | N2, N7: the active cycle is time-boxed to ~25 ms per cron tick. | `core` (A, N × value size × version) | **Confirmed.** Linear in N, ~110–135k keys/s idle; 1M keys take 8–9 s (F7). |
+| H2 | Higher `active-expire-effort` reclaims faster but costs latency; it is not uniformly better. | N2: effort raises the slow-cycle budget from 25 ms to 43 ms (hz=10). | `effort`, `latency` | **Confirmed.** Effort 10 doubles p99 (27→50 ms) without faster cleanup under load; hz 100 is better (F3). |
+| H3 | Simultaneous (A) vs uniform (B) vs concentrated (C) expiry behave differently. | N4: the repeat rule reacts to the local stale share. | `distribution` | **Partly.** Spreading over 10 s cuts peak garbage ~55% but not the mean; last key still removed 3–5 s after the last expiry. |
+| H4 | Redis can report few logically valid keys while retaining a lot of memory. DBSIZE/INFO cannot separate stale keys from live ones, and allocator retention adds a further gap. | N9, N10 | `cliff`, `bytes`, `core` (RSS/purge) | **Confirmed.** 1M live + 100k expired 4 KB keys: >75% of used_memory is expired data while expired_stale_perc reads ~8% (F1); RSS retention is separate (F7). |
+| H5 | Under client traffic, the active cycle competes with requests: more FAST cycles, faster reclamation, worse tail latency. | N1/N5: FAST cycle runs in `beforeSleep`, once per event-loop iteration. | `latency`, `observer` | **Confirmed, both ways.** Up to ~40% of the main thread; load makes expiry ~2× faster (F4). |
+| H6a | **Stale-share cliff.** If expiring keys are ≤10% of the keys *with a TTL*, active expiry nearly stops (tens of keys/s); just above 10% it clears them in seconds. Long-TTL keys cause it; persistent keys do not. | N3 + N4 | `cliff`, `cliff_versions`, `sweep`, `persist`, `bytes` | **Confirmed, stronger than predicted.** Cliff at 30–35%, not 10%; model fits 8.8.4 within 0.9–1.15× (F1, F2). |
+| H6b | 7.2.17 stalls active expiry during a BGSAVE once the expires table is <1% full. 8.x does not. Mass expiry during a fork also costs copy-on-write memory. | N8 | `fork` | **Partly. The 8.x half of the prediction was wrong.** 7.2.17 stalls as predicted. 8.x stalls too, because it starts the allowed 1/32 shrink but cannot finish it without cron rehashing. CoW pins ~1.1 GB (F8). |
+| H6c | With large composite values freed synchronously, cycles overrun their time budget because the clock is checked only every 16 iterations. | N6 | `bigvalues` | **Confirmed** with 1,000-field hashes: SLOW 49–77 ms, FAST up to 48.6 ms (F6). |
+| H6d | Monitoring frequency changes reclamation speed (each INFO wakes the event loop and lets a FAST cycle run). | N1, N5 | `observer` | **Confirmed.** 100 Hz polling: 7.65 → 5.24 s; 5 Hz: no effect (F4). |
+| H6e | The #15412 fix (8.10) changes FAST-cycle activity during mass expiry vs 8.8.4. | N5 | all suites, 8.8.4 vs 8.10.3; `8.10.3-revert15412-trace` | **No for simultaneous expiry (F4); yes, strongly, under churn (F2, causal via revert).** |
+| H6f | (added during the study) Active expiry pauses at ~1% while the expires dict is mid-shrink. | N11 | `rehash_stall`, `fixskip`, `fork` | **Confirmed**: plateau predicted within a few keys at 1M–8M keys; indefinite with `activerehashing no`; fixed by a one-line patch (F5). |

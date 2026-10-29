@@ -1,0 +1,19 @@
+diff --git a/src/expire.c b/src/expire.c
+index a827d3b59..82a7748d2 100644
+--- a/src/expire.c
++++ b/src/expire.c
+@@ -132,8 +132,12 @@ static inline int expirySamplingShouldSkipDict(dict *d, int didx) {
+     unsigned long buckets = dictBuckets(d);
+     /* When there are less than 1% filled buckets, sampling the key
+      * space is expensive, so stop here waiting for better times...
+-     * The dictionary will be resized asap. */
+-    if (buckets > DICT_HT_INITIAL_SIZE && (numkeys * 100/buckets < 1)) {
++     * The dictionary will be resized asap.
++     *
++     * Do not skip a dict that is already being resized: dictBuckets() counts
++     * both tables while rehashing, so a shrink in progress can itself keep the
++     * fill below 1%, and nothing on this path advances that rehash. */
++    if (buckets > DICT_HT_INITIAL_SIZE && (numkeys * 100/buckets < 1) && !dictIsRehashing(d)) {
+         return 1;
+     }
+ 

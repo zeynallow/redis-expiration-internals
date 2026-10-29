@@ -1,0 +1,8 @@
+7.2.17_n1000000_v4096_r0
+Traceback (most recent call last):
+  File "/home/user/redis-expiration-internals-warm/benchmarks/run_all.py", line 241, in main
+    m = mod.run(args)
+  File "/home/user/redis-expiration-internals-warm/benchmarks/expiration_test.py", line 85, in run
+    raise RuntimeError(f"invalid run: slack={slack:.2f}s loaded={loaded}")
+RuntimeError: invalid run: slack=-3.50s loaded={'used_memory': 4898532456.0, 'used_memory_rss': 5003304960.0, 'used_memory_dataset': 4820795128.0, 'allocator_allocated': 4948121992.0, 'allocator_active': 4949159936.0, 'allocator_resident': 4998094848.0, 'allocator_frag_ratio': 1.0, 'allocator_frag_bytes': 1037944.0, 'allocator_rss_bytes': 48934912.0, 'rss_overhead_bytes': 5210112.0, 'mem_fragmentation_ratio': 1.01, 'lazyfree_pending_objects': 0.0, 'lazyfreed_objects': 0.0, 'current_cow_size': 0.0, 'current_fork_perc': 0.0, 'current_save_keys_processed': 0.0, 'rdb_bgsave_in_progress': 0.0, 'rdb_last_cow_size': 0.0, 'total_commands_processed': 1000063.0, 'instantaneous_ops_per_sec': 23769.0, 'expired_keys': 61423.0, 'expired_stale_perc': 77.41, 'expired_time_cap_reached_count': 29.0, 'expire_cycle_cpu_milliseconds': 187.0, 'evicted_keys': 0.0, 'keyspace_hits': 0.0, 'keyspace_misses': 0.0, 'latest_fork_usec': 0.0, 'used_cpu_sys': 26.192963, 'used_cpu_user': 10.59594, 'used_cpu_sys_main_thread': 26.192025, 'used_cpu_user_main_thread': 10.595659, 'dbsize': 938232, 'proc_utime_ticks': 1059, 'proc_stime_ticks': 2619, 'proc_rss_kb': 4886160, 'proc_vcsw': 70, 'proc_nvcsw': 112, 'child_rss_kb': 0, 't_wall': 1793249279.286047, 't_mono': 17733.141579151, 'poll_rtt': 0.004825379000976682}
+

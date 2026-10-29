@@ -1,0 +1,79 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 3K of event 'task-clock:ppp'
+# Event count (approx.): 1809904500
+#
+# Overhead  Symbol                                     IPC   [IPC Coverage]
+# ........  .........................................  ....................
+#
+    30.46%  [.] activeExpireCycle                      -      -            
+    13.71%  [.] activeExpireCycleTryExpire.part.0      -      -            
+            |          
+             --13.65%--0x7f50fd808a10
+                       0x7f50f3800000
+                       0
+                       0xf043c07e083f089
+
+    10.70%  [.] sdsfree                                -      -            
+            |
+            ---0x894853ff46b60f47
+
+     9.20%  [.] dictTwoPhaseUnlinkFind                 -      -            
+     7.08%  [.] je_malloc_usable_size                  -      -            
+            |          
+             --6.58%--0
+
+     4.04%  [.] tcache_bin_flush_edatas_lookup.isra.0  -      -            
+            |          
+             --3.34%--je_tcache_bin_flush_small
+                       je_free_default
+                       |          
+                       |--0.91%--0x7878787878787878
+                       |          
+                        --0.64%--0x1a185e299d0
+                                  0
+
+     3.48%  [.] dbGenericDelete                        -      -            
+     2.85%  [.] 0x0000000000000c0c                     -      -            
+            |          
+            |--2.10%--mstime
+            |          |          
+            |          |--1.08%--0x7f50fd875db3
+            |          |          
+            |           --1.02%--0x7f50fd875d93
+            |          
+             --0.75%--activeExpireCycleTryExpire.part.0
+                       0x7f50fd808a10
+                       0x7f50f3800000
+                       0
+                       0xf043c07e083f089
+
+     2.46%  [.] __memcmp_evex_movbe                    -      -            
+     2.21%  [.] dictGetKey                             -      -            
+            |          
+             --2.18%--0x7f50fd808a10
+                       0x7f50f3800000
+                       0
+                       0xf043c07e083f089
+
+     1.41%  [.] dictSdsKeyCompare                      -      -            
+     1.33%  [.] zfree                                  -      -            
+            |          
+             --0.61%--0x894853ff46b60f47
+
+     1.02%  [.] je_tcache_bin_flush_small              -      -            
+            |          
+             --1.00%--je_free_default
+
+     0.86%  [.] je_free                                -      -            
+     0.83%  [.] siphash                                -      -            
+     0.55%  [.] dictGenericDelete.lto_priv.0           -      -            
+     0.55%  [.] zmalloc                                -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#

@@ -1,0 +1,1 @@
+Design error: 500-field hashes are listpack-encoded under the default hash-max-listpack-entries=512 (all three versions), so they are a single allocation and cheap to free. They did not test large composite values. Re-run with 1000-field hashes (hashtable encoding).

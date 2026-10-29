@@ -1,0 +1,418 @@
+# To display the perf.data header info, please use --header/--header-only options.
+#
+#
+# Total Lost Samples: 0
+#
+# Samples: 3K of event 'task-clock:ppp'
+# Event count (approx.): 1787893500
+#
+# Overhead  Symbol                                             IPC   [IPC Coverage]
+# ........  .................................................  ....................
+#
+    20.26%  [.] dictScanDefragBucket                           -      -            
+            |          
+             --20.20%--dictScanDefrag.part.0
+                       activeExpireCycle
+                       |          
+                       |--18.75%--databasesCron
+                       |          serverCron
+                       |          processTimeEvents
+                       |          aeMain
+                       |          main
+                       |          __libc_start_call_main
+                       |          __libc_start_main@@GLIBC_2.34
+                       |          _start
+                       |          
+                        --1.45%--beforeSleep
+                                  aeMain
+                                  main
+                                  __libc_start_call_main
+                                  __libc_start_main@@GLIBC_2.34
+                                  _start
+
+    17.77%  [.] expireScanCallback                             -      -            
+            |          
+            |--11.86%--dictScanDefrag.part.0
+            |          activeExpireCycle
+            |          |          
+            |          |--10.72%--databasesCron
+            |          |          serverCron
+            |          |          processTimeEvents
+            |          |          aeMain
+            |          |          main
+            |          |          __libc_start_call_main
+            |          |          __libc_start_main@@GLIBC_2.34
+            |          |          _start
+            |          |          
+            |           --1.15%--beforeSleep
+            |                     aeMain
+            |                     main
+            |                     __libc_start_call_main
+            |                     __libc_start_main@@GLIBC_2.34
+            |                     _start
+            |          
+             --5.90%--dictScanDefragBucket
+                       dictScanDefrag.part.0
+                       activeExpireCycle
+                       |          
+                        --5.48%--databasesCron
+                                  serverCron
+                                  processTimeEvents
+                                  aeMain
+                                  main
+                                  __libc_start_call_main
+                                  __libc_start_main@@GLIBC_2.34
+                                  _start
+
+    14.02%  [.] stringObjectLen                                -      -            
+            |          
+             --13.93%--dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                       |--9.01%--dictScanDefrag.part.0
+                       |          activeExpireCycle
+                       |          |          
+                       |          |--8.00%--databasesCron
+                       |          |          serverCron
+                       |          |          processTimeEvents
+                       |          |          aeMain
+                       |          |          main
+                       |          |          __libc_start_call_main
+                       |          |          __libc_start_main@@GLIBC_2.34
+                       |          |          _start
+                       |          |          
+                       |           --1.01%--beforeSleep
+                       |                     aeMain
+                       |                     main
+                       |                     __libc_start_call_main
+                       |                     __libc_start_main@@GLIBC_2.34
+                       |                     _start
+                       |          
+                        --4.92%--dictScanDefragBucket
+                                  dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                   --4.50%--databasesCron
+                                             serverCron
+                                             processTimeEvents
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+    11.56%  [.] dictTwoPhaseUnlinkFind                         -      -            
+            |          
+             --11.50%--dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                       |--6.60%--dictScanDefragBucket
+                       |          dictScanDefrag.part.0
+                       |          activeExpireCycle
+                       |          |          
+                       |          |--6.04%--databasesCron
+                       |          |          serverCron
+                       |          |          processTimeEvents
+                       |          |          aeMain
+                       |          |          main
+                       |          |          __libc_start_call_main
+                       |          |          __libc_start_main@@GLIBC_2.34
+                       |          |          _start
+                       |          |          
+                       |           --0.56%--beforeSleep
+                       |                     aeMain
+                       |                     main
+                       |                     __libc_start_call_main
+                       |                     __libc_start_main@@GLIBC_2.34
+                       |                     _start
+                       |          
+                        --4.90%--dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                  |--4.39%--databasesCron
+                                  |          serverCron
+                                  |          processTimeEvents
+                                  |          aeMain
+                                  |          main
+                                  |          __libc_start_call_main
+                                  |          __libc_start_main@@GLIBC_2.34
+                                  |          _start
+                                  |          
+                                   --0.50%--beforeSleep
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+     4.50%  [.] zfree.part.0                                   -      -            
+            |          
+            |--3.33%--dictTwoPhaseUnlinkFree
+            |          dbGenericDelete
+            |          deleteKeyAndPropagate.lto_priv.0
+            |          activeExpireCycleTryExpire.part.0
+            |          expireScanCallback
+            |          |          
+            |          |--2.07%--dictScanDefrag.part.0
+            |          |          activeExpireCycle
+            |          |          |          
+            |          |           --1.87%--databasesCron
+            |          |                     serverCron
+            |          |                     processTimeEvents
+            |          |                     aeMain
+            |          |                     main
+            |          |                     __libc_start_call_main
+            |          |                     __libc_start_main@@GLIBC_2.34
+            |          |                     _start
+            |          |          
+            |           --1.26%--dictScanDefragBucket
+            |                     dictScanDefrag.part.0
+            |                     activeExpireCycle
+            |                     |          
+            |                      --1.23%--databasesCron
+            |                                serverCron
+            |                                processTimeEvents
+            |                                aeMain
+            |                                main
+            |                                __libc_start_call_main
+            |                                __libc_start_main@@GLIBC_2.34
+            |                                _start
+            |          
+             --1.15%--dictGenericDelete.lto_priv.0
+                       kvstoreDictDelete
+                       dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       dictScanDefragBucket
+                       dictScanDefrag.part.0
+                       activeExpireCycle
+                       |          
+                        --1.12%--databasesCron
+                                  serverCron
+                                  processTimeEvents
+                                  aeMain
+                                  main
+                                  __libc_start_call_main
+                                  __libc_start_main@@GLIBC_2.34
+                                  _start
+
+     3.95%  [.] tcache_bin_flush_edatas_lookup.isra.0          -      -            
+            |          
+             --3.55%--je_tcache_bin_flush_small
+                       |          
+                       |--1.96%--je_free_default
+                       |          
+                        --1.59%--je_sdallocx_default
+
+     2.46%  [.] __memcmp_evex_movbe                            -      -            
+            |          
+             --2.32%--dictTwoPhaseUnlinkFind
+                       dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                       |--1.45%--dictScanDefrag.part.0
+                       |          activeExpireCycle
+                       |          |          
+                       |           --1.23%--databasesCron
+                       |                     serverCron
+                       |                     processTimeEvents
+                       |                     aeMain
+                       |                     main
+                       |                     __libc_start_call_main
+                       |                     __libc_start_main@@GLIBC_2.34
+                       |                     _start
+                       |          
+                        --0.87%--dictScanDefragBucket
+                                  dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                   --0.78%--databasesCron
+                                             serverCron
+                                             processTimeEvents
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+     2.41%  [.] 0x0000000000000c0c                             -      -            
+            |          
+            |--1.76%--mstime
+            |          deleteKeyAndPropagate.lto_priv.0
+            |          activeExpireCycleTryExpire.part.0
+            |          expireScanCallback
+            |          |          
+            |          |--0.95%--dictScanDefrag.part.0
+            |          |          activeExpireCycle
+            |          |          |          
+            |          |           --0.87%--databasesCron
+            |          |                     serverCron
+            |          |                     processTimeEvents
+            |          |                     aeMain
+            |          |                     main
+            |          |                     __libc_start_call_main
+            |          |                     __libc_start_main@@GLIBC_2.34
+            |          |                     _start
+            |          |          
+            |           --0.81%--dictScanDefragBucket
+            |                     dictScanDefrag.part.0
+            |                     activeExpireCycle
+            |                     |          
+            |                      --0.67%--databasesCron
+            |                                serverCron
+            |                                processTimeEvents
+            |                                aeMain
+            |                                main
+            |                                __libc_start_call_main
+            |                                __libc_start_main@@GLIBC_2.34
+            |                                _start
+            |          
+             --0.56%--activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+
+     2.15%  [.] activeExpireCycleTryExpire.part.0              -      -            
+            |          
+             --2.10%--expireScanCallback
+                       |          
+                       |--1.48%--dictScanDefrag.part.0
+                       |          activeExpireCycle
+                       |          |          
+                       |           --1.43%--databasesCron
+                       |                     serverCron
+                       |                     processTimeEvents
+                       |                     aeMain
+                       |                     main
+                       |                     __libc_start_call_main
+                       |                     __libc_start_main@@GLIBC_2.34
+                       |                     _start
+                       |          
+                        --0.62%--dictScanDefragBucket
+                                  dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                   --0.59%--databasesCron
+                                             serverCron
+                                             processTimeEvents
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+     1.32%  [.] je_tcache_bin_flush_small                      -      -            
+            |          
+            |--0.64%--je_free_default
+            |          
+             --0.62%--je_sdallocx_default
+
+     1.18%  [.] dbGenericDelete                                -      -            
+            |          
+             --1.06%--deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                        --0.70%--dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                   --0.59%--databasesCron
+                                             serverCron
+                                             processTimeEvents
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+     1.15%  [.] decrRefCount.part.0                            -      -            
+            |          
+             --0.64%--activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+
+     1.04%  [.] siphash                                        -      -            
+            |          
+             --0.67%--dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+
+     1.01%  [.] rehashEntriesInBucketAtIndex.lto_priv.0        -      -            
+            |          
+             --0.73%--dictRehash
+                       dictTwoPhaseUnlinkFind
+                       dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+
+     0.95%  [.] kvGetKey                                       -      -            
+            |          
+             --0.92%--dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                        --0.50%--dictScanDefrag.part.0
+                                  activeExpireCycle
+
+     0.87%  [.] __memmove_evex_unaligned_erms                  -      -            
+            |          
+             --0.76%--createStringObject
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                        --0.53%--dictScanDefrag.part.0
+                                  activeExpireCycle
+                                  |          
+                                   --0.50%--databasesCron
+                                             serverCron
+                                             processTimeEvents
+                                             aeMain
+                                             main
+                                             __libc_start_call_main
+                                             __libc_start_main@@GLIBC_2.34
+                                             _start
+
+     0.73%  [.] dictScanDefrag.part.0                          -      -            
+            |          
+             --0.67%--activeExpireCycle
+                       |          
+                        --0.64%--databasesCron
+                                  serverCron
+                                  processTimeEvents
+                                  aeMain
+                                  main
+                                  __libc_start_call_main
+                                  __libc_start_main@@GLIBC_2.34
+                                  _start
+
+     0.70%  [.] dictGenericDelete.lto_priv.0                   -      -            
+            |          
+             --0.67%--kvstoreDictDelete
+                       dbGenericDelete
+                       deleteKeyAndPropagate.lto_priv.0
+                       activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+                       |          
+                        --0.50%--dictScanDefrag.part.0
+                                  activeExpireCycle
+
+     0.64%  [.] deleteKeyAndPropagate.lto_priv.0               -      -            
+            |          
+             --0.59%--activeExpireCycleTryExpire.part.0
+                       expireScanCallback
+
+     0.56%  [.] dictSdsCompareKV                               -      -            
+     0.53%  [.] decrRefCount                                   -      -            
+     0.50%  [.] activeExpireCycle                              -      -            
+
+
+#
+# (Cannot load tips.txt file, please install perf!)
+#
